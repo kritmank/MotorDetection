@@ -40,7 +40,7 @@ class mainControl:
         oscil.write("WFMInpre:ENCdg BINary")
 
     def openDC(self):
-        filePath=r"C:\Users\kritt\NSCproject\DCcontrol.py"
+        filePath=r"DCcontrol.py"
         exec(open(filePath).read())
 
 # animation graph
