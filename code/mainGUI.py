@@ -104,7 +104,7 @@ class mainControl:
     def statusCH(self):
         global chanel
         chanel=["CH1","CH2","CH3","CH4"]
-        for i in status_list:
+        for i in chanel:
             if i==CH:
                 self.write(f"SELect:{i} ON")
                 onChanel=CH
@@ -151,7 +151,7 @@ header=tk.Label(label_frame, text="Graph for voltage mesured and fourier transfo
 label_frame.pack(side="top")
 
 # Select chanel to display buttons
-radiobuttonFrm=tk.Frame(mainWindow)
+radioFrm=tk.Frame(mainWindow)
 ch1=tk.Radiobutton(radioFrm,text="CH1",variable=ch,value="CH1").pack(side="left")
 ch2=tk.Radiobutton(radioFrm,text="CH2",variable=ch,value="CH2").pack(side="left")
 ch3=tk.Radiobutton(radioFrm,text="CH3",variable=ch,value="CH3").pack(side="left")
