@@ -4,10 +4,7 @@ import numpy as np   ### mathematic library
 import matplotlib.pyplot as plt  ### generate figure
 import matplotlib.animation as animation   ### plot graph wiht real time
 from tkinter import messagebox
-from PIL import Image, ImageTk
 from scipy import fftpack
-from distutils.cmd import Command
-from turtle import position
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg ## add figures onto GUI
 from playsound import playsound
 
@@ -28,8 +25,6 @@ def findDevice():
         idn=device.query("*IDN?")
         if idn[0]=="T":
             oscil=device
-        if idn[0]=="R":
-            DC=device
 
 class mainControl:
     def __init__(self):
@@ -39,10 +34,22 @@ class mainControl:
         oscil.write(f"DATa:SOUrce {CH}")
         oscil.write("WFMInpre:ENCdg BINary")
 
-    def openDC(self):
+    def findPath(self,filename):
         cwd=os.getcwd()
-        filepath=os.path.abspath(os.path.join(cwd,"code/DCcontrol.py"))
+        filepath=os.path.abspath(os.path.join(cwd, filename))
+        return filepath
+
+    def openDC(self):
+        filepath=self.findPath("code/DCcontrol.py")
         subprocess.run(["python",filepath])
+
+    def playSelect(self):
+        filepath=self.findPath("Audio/jump.wav")
+        playsound(filepath)
+
+    def playSubmit(self):
+        filepath=self.findPath("Audio/select2.wav")
+        playsound(filepath)
 
     def animate(self,i):
 
@@ -90,19 +97,6 @@ class mainControl:
         else:
             ani.resume()
             self.pause = True
-
-    def findPath(self,filename):
-        cwd=os.getcwd()
-        filepath=os.path.abspath(os.path.join(cwd, filename))
-        return filepath
-
-    def playSelect(self):
-        filepath=self.findPath("Audio/jump.wav")
-        playsound(filepath)
-
-    def playSubmit(self):
-        filepath=self.findPath("Audio/select2.wav")
-        playsound(filepath)
 
     def query(self,data):
         info=oscil.query(f":{data}? {CH}")
