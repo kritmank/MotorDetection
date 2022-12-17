@@ -3,6 +3,7 @@ from tkinter import messagebox
 import pyvisa
 from playsound import playsound
 import os
+import subprocess
 
 
 # Function
@@ -135,7 +136,6 @@ class DCcontrol:
 DcWindow=tk.Tk()
 DcWindow.geometry("800x1080")
 DcWindow.title("DC Supply Control")
-pygame.mixer.init()
 
 def quitRoot(callback=None):
     DcWindow.destroy()

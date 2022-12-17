@@ -1,18 +1,15 @@
-import pyvisa
+import pyvisa, os, subprocess
 import tkinter as tk
-from tkinter import messagebox
-from PIL import Image, ImageTk
-from scipy import fftpack
-import os
-from distutils.cmd import Command
-from turtle import position
 import numpy as np   ### mathematic library
 import matplotlib.pyplot as plt  ### generate figure
 import matplotlib.animation as animation   ### plot graph wiht real time
+from tkinter import messagebox
+from PIL import Image, ImageTk
+from scipy import fftpack
+from distutils.cmd import Command
+from turtle import position
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg ## add figures onto GUI
 
-cwd=os.getcwd()
-parent_dir = os.path.abspath(os.path.join(cwd, '..'))
 
 font1=("Arial",20)
  
@@ -42,10 +39,10 @@ class mainControl:
         oscil.write("WFMInpre:ENCdg BINary")
 
     def openDC(self):
-        filePath=parent_dir+"/DCcontrol.py"
-        exec(open(filePath).read())
+        cwd=os.getcwd()
+        filepath=os.path.abspath(os.path.join(cwd,"code/DCcontrol.py"))
+        subprocess.run(["python",filepath])
 
-# animation graph
     def animate(self,i):
 
         samp_rate=oscil.query("WFMOutpre:RECOrdlength?")
