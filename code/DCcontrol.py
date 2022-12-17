@@ -2,8 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import pyvisa
 from playsound import playsound
-import os
-import subprocess
+import os, subprocess
 
 
 # Function
@@ -29,7 +28,6 @@ class DCcontrol:
         cwd=os.getcwd()
         filepath=os.path.abspath(os.path.join(cwd, filename))
         return filepath
- 
 
     def playSelect(self):
         filepath=self.findPath("Audio/jump.wav")

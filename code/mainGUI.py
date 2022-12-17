@@ -9,6 +9,7 @@ from scipy import fftpack
 from distutils.cmd import Command
 from turtle import position
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg ## add figures onto GUI
+from playsound import playsound
 
 
 font1=("Arial",20)
@@ -90,6 +91,19 @@ class mainControl:
             ani.resume()
             self.pause = True
 
+    def findPath(self,filename):
+        cwd=os.getcwd()
+        filepath=os.path.abspath(os.path.join(cwd, filename))
+        return filepath
+
+    def playSelect(self):
+        filepath=self.findPath("Audio/jump.wav")
+        playsound(filepath)
+
+    def playSubmit(self):
+        filepath=self.findPath("Audio/select2.wav")
+        playsound(filepath)
+
     def query(self,data):
         info=oscil.query(f":{data}? {CH}")
         info=info.replace("\n","")
@@ -111,6 +125,8 @@ class mainControl:
                 self.write(f"SELect:{i} OFF")
 
         labelCH.config(f"Chanel {onChanel} ON")
+        
+        self.playSelect()
 
         
 # GUI Section
