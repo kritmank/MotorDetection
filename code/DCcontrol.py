@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 import pyvisa
-import pygame
+from playsound import playsound
+import os
 
 
 # Function
@@ -23,16 +24,19 @@ class DCcontrol:
         global CH
         CH=ch.get()
     
-    def playSound(self,path):
-        pygame.init()
-        beep=pygame.mixer.Sound(path)
-        pygame.mixer.Sound.play(beep,loops=0)
+    def findPath(self,filename):
+        cwd=os.getcwd()
+        filepath=os.path.abspath(os.path.join(cwd, filename))
+        return filepath
+ 
 
     def playSelect(self):
-        self.playSound(r"Audio/jump.mp3")
+        filepath=self.findPath("Audio/Beep.mp3")
+        playsound(filepath)
 
     def playSubmit(self):
-        self.playSound(r"Audio/select2.mp3")
+        filepath=self.findPath("Audio/select2.wav")
+        playsound(filepath)
 
     def query(self,data):
         info=DC.query(f":{data}? {CH}")

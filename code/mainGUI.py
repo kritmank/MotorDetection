@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from scipy import fftpack
-
+import os
 from distutils.cmd import Command
 from turtle import position
 import numpy as np   ### mathematic library
@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt  ### generate figure
 import matplotlib.animation as animation   ### plot graph wiht real time
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg ## add figures onto GUI
 
+cwd=os.getcwd()
+parent_dir = os.path.abspath(os.path.join(cwd, '..'))
 
 font1=("Arial",20)
  
@@ -40,7 +42,7 @@ class mainControl:
         oscil.write("WFMInpre:ENCdg BINary")
 
     def openDC(self):
-        filePath=r"DCcontrol.py"
+        filePath=parent_dir+"/DCcontrol.py"
         exec(open(filePath).read())
 
 # animation graph
