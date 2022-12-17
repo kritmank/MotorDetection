@@ -31,7 +31,7 @@ class DCcontrol:
  
 
     def playSelect(self):
-        filepath=self.findPath("Audio/Beep.mp3")
+        filepath=self.findPath("Audio/jump.wav")
         playsound(filepath)
 
     def playSubmit(self):
