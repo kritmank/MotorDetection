@@ -47,6 +47,8 @@ class DCcontrol:
         except ValueError:
             pass
 
+        return info
+
     def SelectCH(self):
         select=f"Now selecting Chanel {CH}"
         chanel=f"INST {CH}"
@@ -95,15 +97,11 @@ class DCcontrol:
     def setOCP(self):
         self.setStatus("OCP",labelOCP)
 
-    def findInfo(self,data):
-        info=self.query(data)
-        return info
-
     def ShowInfo(self):
-        volt_info=self.findInfo("VOLT")
-        curr_info=self.findInfo("CURR")
-        voltP_info=self.findInfo(":VOLT:PROT")
-        currP_info=self.findInfo(":CURR:PROT")
+        volt_info=self.query("VOLT")
+        curr_info=self.query("CURR")
+        voltP_info=self.query(":VOLT:PROT")
+        currP_info=self.query(":CURR:PROT")
 
         VoltLabel.config(text=str(volt_info))
         CurrLabel.config(text=str(curr_info))

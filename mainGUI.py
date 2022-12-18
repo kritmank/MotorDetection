@@ -19,7 +19,7 @@ ax2=fig.add_subplot(212)
 def findDevice():
     ins=pyvisa.ResourceManager()
     ins_list=ins.list_resources()
-    global oscil
+    global oscil, DC
     for i in ins_list:
         device=ins.open_resource(str(i))
         idn=device.query("*IDN?")
