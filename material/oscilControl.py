@@ -16,6 +16,12 @@ def findDevice():
         if idn[0]=="R":
             DC=device
 
+def findPath(self,filename):
+    cwd=os.getcwd()
+    filepath=os.path.abspath(os.path.join(cwd, filename))
+    return filepath
+
+
 # Class and Function
 class oscilControl:
 
@@ -23,18 +29,13 @@ class oscilControl:
         findDevice()
         global CH
         CH=ch.get()
-    
-    def findPath(self,filename):
-        cwd=os.getcwd()
-        filepath=os.path.abspath(os.path.join(cwd, filename))
-        return filepath
 
     def playSelect(self):
-        filepath=self.findPath("Audio/jump.wav")
+        filepath=findPath("material/audio/jump.wav")
         playsound(filepath)
 
     def playSubmit(self):
-        filepath=self.findPath("Audio/select2.wav")
+        filepath=findPath("material/audio/select2.wav")
         playsound(filepath)
 
     def queryCH(self,data):
@@ -122,6 +123,7 @@ class oscilControl:
 oscilWindow=tk.Tk()
 oscilWindow.geometry("800x1080")
 oscilWindow.title("DC Supply Control")
+oscilWindow.iconbitmap(findPath("material/picture/oscil.ico"))
 
 def quitRoot(callback=None):
     oscilWindow.destroy()

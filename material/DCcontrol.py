@@ -16,6 +16,12 @@ def findDevice():
         if idn[0]=="R":
             DC=device
 
+def findPath(self,filename):
+    cwd=os.getcwd()
+    filepath=os.path.abspath(os.path.join(cwd, filename))
+    return filepath
+
+
 # Class and Function
 class DCcontrol:
 
@@ -24,17 +30,12 @@ class DCcontrol:
         global CH
         CH=ch.get()
     
-    def findPath(self,filename):
-        cwd=os.getcwd()
-        filepath=os.path.abspath(os.path.join(cwd, filename))
-        return filepath
-
     def playSelect(self):
-        filepath=self.findPath("Audio/jump.wav")
+        filepath=findPath("material/audio/jump.wav")
         playsound(filepath)
 
     def playSubmit(self):
-        filepath=self.findPath("Audio/select2.wav")
+        filepath=findPath("material/audio/select2.wav")
         playsound(filepath)
 
     def query(self,data):
@@ -132,6 +133,7 @@ class DCcontrol:
 DcWindow=tk.Tk()
 DcWindow.geometry("800x1080")
 DcWindow.title("DC Supply Control")
+DcWindow.iconbitmap(findPath("material/picture/DCsupply.ico"))
 
 def quitRoot(callback=None):
     DcWindow.destroy()
