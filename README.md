@@ -1,5 +1,5 @@
 # Motor Detector
-## DC motor effiency detection using Oscilloscope and DC supply
+DC motor effiency detection using Oscilloscope and DC supply
 This project is to detect DC motor quality by observing its working using matplotlib.pyplot to plot graph received from oscilloscope.
     
 This project is created for NSC(National Software Contest) 2022.
